@@ -175,13 +175,13 @@ mode "resize" {
 
 #Remove titlebar
 
-default_border pixel 1
-default_floating_border pixel 1
+default_border pixel 0
+default_floating_border pixel 0
 
 #gaps
 
-gaps inner 5
-gaps outer 5
+gaps inner 6
+gaps outer 6
 
 bindsym $mod+r mode "resize"
 
@@ -195,7 +195,6 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id picom
 exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id nm-applet
-exec_always --no-startup-id pa-applet
 exec_always --no-startup-id xbindkeys
 exec_always --no-startup-id light-locker --lock-on-suspend
 exec_always --no-startup-id xinput set-prop 'DELL086F:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1 &

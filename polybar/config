@@ -1,10 +1,19 @@
 [colors]
-background = #aa1e2137 
+background = #55000000
+background-alt = #aa000022 
 foreground = #e3eaf3
-primary = #02c084
+;primary = #02c084 1e2137
+primary = #008899
 secondary = #65a2d9
 tertiary = #d07ef2
 fourth = #e5c246
+cyan = #03fbfe
+black=      #000000
+red=        #eb6e67
+green=      #95ee8f
+yellow=     #f8c456
+blue=       #6eaafb
+magenta=    #d886f3
 alert = #ed404c
 
 [bar/Me]
@@ -14,8 +23,9 @@ height = 27
 ;offset-y = 1%
 radius = 2.0
 fixed-center = false
-bottom = true
+;bottom = true
 
+separator = |
 background = ${colors.background}
 foreground = ${colors.foreground}
 
@@ -26,25 +36,25 @@ border-size = 0
 border-color = #00000000
 
 padding-left = 1
-padding-right = 1
+padding-right = 2
 
-module-margin-left = 1
+module-margin-left = 2
 module-margin-right = 2
 
-font-0 = MesloLGS NF:pixelsize=10;1
-font-1 = MesloLGS NF:fontformat=truetype:size=8:antialias=false;0
-font-2 = MesloLGS NF:pixelsize=10;1
+font-0 = FiraCode Nerd Font:pixelsize=10;1
+;font-1 = FiraCode Nerd Font:fontformat=truetype:size=8:antialias=false;0
+;font-2 = FiraCode Nerd Font:pixelsize=10;1
 
-modules-left = i3
+modules-left = i3 xwindow
 modules-center = mpd
-modules-right =xbacklight pulseaudio memory cpu wlan eth battery temperature date powermenu
+modules-right =xbacklight pulseaudio memory cpu eth battery temperature date
 
 tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
+tray-padding = 1
+tray-background = #220063ff
 
 ;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = i3
 
 ;override-redirect = true
 
@@ -72,7 +82,7 @@ format-prefix-underline = ${colors.secondary}
 label-layout = %layout%
 label-layout-underline = ${colors.secondary}
 
-label-indicator-padding = 2
+label-indicator-padding = 1
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
@@ -93,21 +103,21 @@ type = internal/bspwm
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+label-focused-padding = 1
 
 label-occupied = %index%
-label-occupied-padding = 2
+label-occupied-padding = 1
 
 label-urgent = %index%!
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
+label-empty-padding = 1
 
 ; Separator in between workspaces
-; label-separator = |
+label-separator = |
 
 [module/i3]
 type = internal/i3
@@ -144,7 +154,7 @@ label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
 ; Separator in between workspaces
-; label-separator = |
+;label-separator = |
 
 
 [module/mpd]
@@ -185,31 +195,31 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #59CEE0
+format-prefix = "龍 "
+format-prefix-foreground = ${colors.blue}
+;format-underline = #59CEE0
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #2692D0
+format-prefix-foreground = ${colors.cyan}
+;format-underline = #2692D0
 label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
 interface = wlo1
-interval = 3.0
+interval = 5.0
 
-format-connected = <label-connected>
-format-connected-underline = #9f78e1
-label-connected = "直"
-label-connected-foreground = ${colors.primary}
+format-connected = %{A1:networkmanager_dmenu:}<label-connected> %{A}
+;format-connected-underline = #9f78e1
+label-connected = 直  %essid%
+label-connected-foreground = ${colors.secondary}
 
 format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
+;format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = 睊
 label-disconnected-foreground = ${colors.alert}
 
@@ -242,12 +252,12 @@ type = internal/date
 interval = 1
 
 date =
-date-alt = "%b %d, %Y  "
-time = "%I:%M"
+date-alt = "  %b %d, %Y  "
+time = "  %H:%M"
 time-alt = "%H:%M:%S"
 
 format-prefix-foreground = ${colors.foreground}
-format-underline = #0a6cf5
+;format-underline = #0a6cf5
 label = %date%%time%
 
 [module/pulseaudio]
@@ -255,9 +265,9 @@ type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
 label-volume = Vol %percentage%%
-label-volume-foreground = ${root.foreground}
+label-volume-foreground = ${colors.foreground}
 
-label-muted = 🔇 muted
+label-muted =  muted
 label-muted-foreground = #666
 
 bar-volume-width = 10
@@ -313,7 +323,7 @@ adapter = AC
 full-at = 98
 
 format-charging = <ramp-capacity> <label-charging>
-format-charging-underline = #ffb52a
+;format-charging-underline = #ffb52a
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
@@ -332,8 +342,9 @@ ramp-capacity-6 = 
 ramp-capacity-7 = 
 ramp-capacity-8 = 
 ramp-capacity-9 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
+ramp-capacity-foreground = ${colors.cyan}
+ramp-capacity-1-foreground = ${colors.alert}
+ramp-capacity-0-foreground = ${colors.alert}
 
 [module/temperature]
 type = internal/temperature
@@ -341,22 +352,22 @@ thermal-zone = 2
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+;format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${colors.alert}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.blue}
 
 [module/powermenu]
 type = custom/script
-exec = echo "  "
+exec = echo " "
 click-left = systemctl suspend
 ; click-right = systemctl reboot
 

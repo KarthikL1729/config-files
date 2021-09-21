@@ -15,9 +15,10 @@ POWERLEVEL10K_MULTILINE_FIRST_PROMPT_PREFIX=""
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
-
 # case insensitive path-completion
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+autoload -U compinit
+compinit
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
 # enable color support of ls and also add handy aliases
   if [ -x /usr/bin/dircolors ]; then
@@ -40,3 +41,4 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+pfetch
