@@ -1,5 +1,5 @@
 [colors]
-background = #55000000
+background = #77000000
 background-alt = #aa000022 
 foreground = #e3eaf3
 ;primary = #02c084 1e2137
@@ -14,16 +14,16 @@ green=      #95ee8f
 yellow=     #f8c456
 blue=       #6eaafb
 magenta=    #d886f3
-alert = #ed404c
+alert =     #ed404c
 
 [bar/Me]
 width = 100%
-height = 27
+height = 32
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 2.0
 fixed-center = false
-;bottom = true
+bottom = true
 
 separator = |
 background = ${colors.background}
@@ -42,12 +42,12 @@ module-margin-left = 2
 module-margin-right = 2
 
 font-0 = FiraCode Nerd Font:pixelsize=10;1
-;font-1 = FiraCode Nerd Font:fontformat=truetype:size=8:antialias=false;0
-;font-2 = FiraCode Nerd Font:pixelsize=10;1
+font-1 = Hack Nerd Font:fontformat=truetype:size=10:antialias=false;0
+font-2 = MesloLGS NF:pixelsize=10;1
 
 modules-left = i3 xwindow
-modules-center = mpd
-modules-right =xbacklight pulseaudio memory cpu eth battery temperature date
+modules-center = 
+modules-right =networkspeedup networkspeeddown pulseaudio memory cpu eth battery temperature date
 
 tray-position = right
 tray-padding = 1
@@ -198,7 +198,7 @@ interval = 2
 format-prefix = "龍 "
 format-prefix-foreground = ${colors.blue}
 ;format-underline = #59CEE0
-label = %percentage:2%%
+label = %percentage%%
 
 [module/memory]
 type = internal/memory
@@ -206,7 +206,7 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.cyan}
 ;format-underline = #2692D0
-label = %percentage_used%%
+label = %gb_used%
 
 [module/wlan]
 type = internal/network
@@ -237,8 +237,8 @@ interface = enp2s0
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.green}
 label-connected = %local_ip%
 
 format-disconnected =
@@ -251,11 +251,13 @@ format-disconnected =
 type = internal/date
 interval = 1
 
-date =
-date-alt = "  %b %d, %Y  "
-time = "  %H:%M"
+date-alt = " %b %d, %Y  "
+time = "%H:%M"
 time-alt = "%H:%M:%S"
 
+format = <label>
+format-foreground = ${colors.cyan}
+label-foreground = ${colors.foreground}
 format-prefix-foreground = ${colors.foreground}
 ;format-underline = #0a6cf5
 label = %date%%time%
@@ -263,29 +265,34 @@ label = %date%%time%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = Vol %percentage%%
-label-volume-foreground = ${colors.foreground}
+format-volume = <ramp-volume> <label-volume>
+;<bar-volume>
+ramp-volume-0 = 
+ramp-volume-1 = 奔
+ramp-volume-2 = 墳
+label-volume = %percentage%%
+ramp-volume-foreground = ${colors.blue}
 
-label-muted =  muted
-label-muted-foreground = #666
+label-muted = 婢 muted
+label-muted-foreground = ${colours.foreground-alt}
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+; bar-volume-width = 7
+; bar-volume-foreground-0 = ${colors.cyan}
+; bar-volume-foreground-1 = ${colors.cyan}
+; bar-volume-foreground-2 = ${colors.cyan}
+; bar-volume-foreground-3 = ${colors.cyan}
+; bar-volume-foreground-4 = ${colors.cyan}
+; bar-volume-foreground-5 = #f5a70a
+; bar-volume-foreground-6 = #ff5555
+; bar-volume-gradient = true
+; bar-volume-indicator = |
+; bar-volume-indicator-font = 2
+; bar-volume-fill = ─
+; bar-volume-fill-font = 2
+; bar-volume-empty = ─
+; bar-volume-empty-font = 2
+; bar-volume-empty-foreground = ${colors.blue}
+click-right = pavucontrol
 
 [module/alsa]
 type = internal/alsa
@@ -313,7 +320,7 @@ bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = ${colors.blue}
 
 
 [module/battery]
@@ -322,15 +329,14 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-charging = <ramp-capacity> <label-charging>
+format-charging = <label-charging>
 ;format-charging-underline = #ffb52a
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+label-charging =  %percentage%%
+label-charging-foreground = ${colors.cyan}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -369,8 +375,11 @@ ramp-foreground = ${colors.blue}
 type = custom/script
 exec = echo " "
 click-left = systemctl suspend
-; click-right = systemctl reboot
 
+[module/Arch]
+type = custom/script
+exec = echo " "
+click-right = systemctl reboot
 
 [settings]
 screenchange-reload = true
@@ -379,6 +388,39 @@ screenchange-reload = true
 ;compositing-foreground = source
 ;compositing-border = over
 ;pseudo-transparency = false
+
+[module/networkspeedup]
+;https://github.com/jaagr/polybar/wiki/Module:-network
+type = internal/network
+;interface = wlp3s0
+;interface = enp14s0
+interface = wlo1
+;interface = enp4s0
+label-connected = " %upspeed:7%"
+format-connected = <label-connected>
+format-connected-prefix = ""
+format-connected-prefix-foreground = ${colors.blue}
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.background}
+;format-connected-underline = #62FF00
+
+################################################################################
+
+[module/networkspeeddown]
+;https://github.com/jaagr/polybar/wiki/Module:-network
+type = internal/network
+;interface = wlp3s0
+;interface = enp14s0
+interface = wlo1
+;interface = enp4s0
+label-connected = " %downspeed:7%"
+format-connected = <label-connected>
+format-connected-prefix = ""
+format-connected-prefix-foreground = ${colors.cyan}
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.background}
+;format-connected-underline = #62FF00
+
 
 [global/wm]
 margin-top = 5
