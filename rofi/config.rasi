@@ -3,7 +3,7 @@ modi: "window,drun,run,ssh,combi";
 /*	width: 50;*/
 /*	lines: 15;*/
 /*	columns: 1;*/
-font: "SourceSansPro 12";
+font: "Google Sans 12";
 /*	bw: 1;*/
 /*	location: 0;*/
 /*	padding: 5;*/
