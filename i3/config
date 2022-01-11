@@ -37,6 +37,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# Cycle through workspaces
+# Mod1 is alt
+
+bindsym Mod1+Tab workspace next
+
 # Flameshot GUI
 bindsym Print exec flameshot gui
 

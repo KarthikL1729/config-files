@@ -224,7 +224,7 @@ draw_bold_text_with_bright_colors: true
 colors:
   # Default colors
   primary:
-    background: '#070031'
+    background: '#070015'
     foreground: '#63B8FF'
     #'0x46d9ff'
 
@@ -329,7 +329,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.60
+background_opacity: 0.70
 # background_opacity: 0.80
 
 #selection:
