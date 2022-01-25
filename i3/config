@@ -154,6 +154,15 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# Always float these
+for_window [class="kitty"] floating enable
+for_window [title="Variety"] floating enable
+for_window [title="Wi Hotspot"] floating enable
+for_window [title="Volume Control"] floating enable
+for_window [title="Bluetooth Devices"] floating enable
+for_window [title="xarchiver 0.5.4.17"] floating enable
+
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -208,7 +217,6 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id picom
 exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id nm-applet
-exec_always --no-startup-id xbindkeys
 exec_always --no-startup-id light-locker --lock-on-suspend
 exec_always --no-startup-id xinput set-prop 'DELL086F:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1 &
 exec_always --no-startup-id xinput set-prop 'DELL086F:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Enabled' 1 &
