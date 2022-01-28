@@ -1,5 +1,5 @@
 [colors]
-background = #bb000000
+background = #dd000000
 background-alt = #aa000022 
 foreground = #e3eaf3
 ;primary = #02c084 1e2137
@@ -12,17 +12,18 @@ black=      #000000
 red=        #eb6e67
 green=      #44ff77
 yellow=     #f8c456
-blue=       #6eaafb
+blue=       #0197f6
+;#6eaafb
 magenta=    #d886f3
-alert =     #ed404c
+alert =     #ff404c
 
 [bar/Me]
 width = 100%
-height = 32
+height = 33
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 2.0
-fixed-center = false
+fixed-center = true
 bottom = true
 
 separator = |
@@ -35,17 +36,19 @@ line-color = #f00
 border-size = 0
 border-color = #00000000
 
-padding-left = 1
+padding-left = 2
 padding-right = 2
 
 module-margin-left = 2
 module-margin-right = 2
 
-font-0 = FiraCode Nerd Font:pixelsize=10;1
-font-1 = Hack Nerd Font:fontformat=truetype:size=10:antialias=false;0
-font-2 = MesloLGS NF:pixelsize=10;1
+;font-0 = Google sans:fontformat=truetype:size=10:antialias=false;0
+font-2 = FiraCode:pixelsize=10;1
+font-1 = MesloLGS NF:pixelsize=10;1
+font-0 = Hack Nerd Font:pixelsize=10;1
 
-modules-left = i3 xwindow
+
+modules-left = powermenu i3 xwindow
 modules-center = 
 modules-right =eth networkspeedup networkspeeddown pulseaudio memory cpu battery temperature date
 
@@ -119,42 +122,104 @@ label-empty-padding = 1
 ; Separator in between workspaces
 label-separator = |
 
+;[module/i3]
+;type = internal/i3
+;format = <label-state> <label-mode>
+;index-sort = true
+;strip-wsnumbers = true
+;wrapping-scroll = false
+;fuzzy-match = true
+;format = <label-state>
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+;ws-icon-default = "  "
+;ws-icon-0 = "0;%{T1}%{T-}"
+;ws-icon-1 = "1;%{T1}ﭮ%{T-}"
+;ws-icon-2 = "2;%{T2}%{T-}"
+;ws-icon-3 = "3;%{T1}%{T-}"
+;ws-icon-4 = "4;%{T1}%{T-}"
+;ws-icon-5 = "5;%{T1}%{T-}"
+;ws-icon-6 = "6;%{T1}%{T-}"
+;ws-icon-7 = "7;7 "
+;ws-icon-8 = "8; "
+;ws-icon-9 = "9; "
+
+;label-mode-padding = 2
+;label-mode-foreground = #000
+;label-mode-background = ${colors.primary}
+;
+;; focused = Active workspace on focused monitor
+;label-focused = %index%
+;label-focused-background = ${colors.background-alt}
+;label-focused-underline= ${colors.primary}
+;label-focused-padding = 2
+;
+;; unfocused = Inactive workspace on any monitor
+;label-unfocused = %index%
+;label-unfocused-padding = 2
+;
+;; visible = Active workspace on unfocused monitor
+;label-visible = %index%
+;label-visible-background = ${self.label-focused-background}
+;label-visible-underline = ${self.label-focused-underline}
+;label-visible-padding = ${self.label-focused-padding}
+;
+;; urgent = Workspace with urgency hint set
+;label-urgent = %index%
+;label-urgent-background = ${colors.alert}
+;label-urgent-padding = 2
+;
+;; Separator in between workspaces
+;; label-separator = |
+
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
+fuzzy-match = true
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
 label-mode-padding = 2
 label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-mode-background = ${colors.cyan}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+;label-focused = 
+;label-focused = ﯾ
+label-focused = 
+label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.cyan}
+;label-focused-underline= ${colors.blue}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+;label-unfocused = 
+label-unfocused = 
+;label-unfocused = ﯿ
 label-unfocused-padding = 2
+label-unfocused-foreground = ${colors.blue}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+; %index%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${colors.alert}
+label-urgent = 
+;label-urgent = 
+;label-urgent = ﯾ
+label-urgent-foreground = ${colors.red}
+label-urgent-background = ${colors.background}
 label-urgent-padding = 2
 
 ; Separator in between workspaces
 ; label-separator = |
+; label-separator-foreground = ${colors.gray}
 
 
 [module/mpd]
@@ -233,7 +298,7 @@ ramp-signal-4 = e
 
 [module/eth]
 type = internal/network
-interface = enp2s0
+interface = enp3s0
 interval = 3.0
 
 ;format-connected-underline = #55aa55
@@ -354,7 +419,7 @@ ramp-capacity-0-foreground = ${colors.alert}
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 2
+thermal-zone = 3
 warn-temperature = 60
 
 format = <ramp> <label>
@@ -372,6 +437,35 @@ ramp-2 = 
 ramp-foreground = ${colors.blue}
 
 [module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open =  
+label-open-foreground = ${colors.blue}
+label-close = ﰸ cancel
+label-close-foreground = ${colors.cyan}
+label-separator = |
+label-separator-foreground = ${colors.foreground}
+
+menu-0-0 =  reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 =  poweroff
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 =  reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 =  poweroff
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[module/powermenu2]
 type = custom/script
 exec = echo " "
 click-left = systemctl suspend

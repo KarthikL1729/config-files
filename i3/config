@@ -155,7 +155,7 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # Always float these
-for_window [class="kitty"] floating enable
+# for_window [class="kitty"] floating enable
 for_window [title="Variety"] floating enable
 for_window [title="Wi Hotspot"] floating enable
 for_window [title="Volume Control"] floating enable
