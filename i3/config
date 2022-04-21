@@ -40,10 +40,14 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Cycle through workspaces
 # Mod1 is alt
 
+# Alt-Tab
 bindsym Mod1+Tab workspace next
 
 # Flameshot GUI
 bindsym Print exec flameshot gui
+
+# Text editor
+bindsym $mod+t exec --no-startup-id kitty nvim
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -55,12 +59,16 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start rofi now (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show combi
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+d exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+
+# Lock system (using i3lock-fancy-rapid)
+
+bindsym Mod1+l exec i3lock-fancy-rapid 5 9 --show-failed-attempts
 
 # change focus
 bindsym $mod+j focus left

@@ -15,7 +15,7 @@ yellow=     #f8c456
 blue=       #0197f6
 ;#6eaafb
 magenta=    #d886f3
-alert =     #ff404c
+alert =     #ff4055
 
 [bar/Me]
 width = 100%
@@ -49,8 +49,8 @@ font-0 = Hack Nerd Font:pixelsize=10;1
 
 
 modules-left = powermenu i3 xwindow
-modules-center = 
-modules-right =eth networkspeedup networkspeeddown pulseaudio memory cpu battery temperature date
+modules-center = date
+modules-right =eth networkspeedup networkspeeddown pulseaudio memory cpu battery temperature
 
 tray-position = right
 tray-padding = 1
@@ -213,7 +213,7 @@ label-visible-padding = ${self.label-focused-padding}
 label-urgent = 
 ;label-urgent = 
 ;label-urgent = ﯾ
-label-urgent-foreground = ${colors.red}
+label-urgent-foreground = ${colors.alert}
 label-urgent-background = ${colors.background}
 label-urgent-padding = 2
 
@@ -312,20 +312,27 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
+;[module/date]
+;type = internal/date
+;interval = 1
+;
+;date-alt = " %b %d, %Y  "
+;time = "%H:%M"
+;time-alt = "%H:%M:%S"
+;
+;format = <label>
+;format-foreground = ${colors.cyan}
+;label-foreground = ${colors.foreground}
+;format-prefix-foreground = ${colors.foreground}
+;;format-underline = #0a6cf5
+;label = %date%%time%
+
 [module/date]
-type = internal/date
-interval = 1
-
-date-alt = " %b %d, %Y  "
-time = "%H:%M"
-time-alt = "%H:%M:%S"
-
-format = <label>
-format-foreground = ${colors.cyan}
-label-foreground = ${colors.foreground}
-format-prefix-foreground = ${colors.foreground}
-;format-underline = #0a6cf5
-label = %date%%time%
+type = internal/date 
+time = "%I:%M %p"
+date = "%a, %d %b"
+label =  %date% -  %time%
+label-foreground = ${colors.white}
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -392,16 +399,20 @@ bar-volume-empty-foreground = ${colors.blue}
 type = internal/battery
 battery = BAT0
 adapter = AC
-full-at = 98
+full-at = 100
 
-format-charging = <label-charging>
+format-charging = <animation-charging> <label-charging> 
 ;format-charging-underline = #ffb52a
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-label-charging =  %percentage%%
-label-charging-foreground = ${colors.cyan}
+label-charging = %percentage%% 
+label-charging-foreground = ${colors.foreground}
+
+animation-charging-0 = 
+animation-charging-foreground = ${colors.cyan}
+animation-charging-framerate = 750
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -419,7 +430,7 @@ ramp-capacity-0-foreground = ${colors.alert}
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 3
+thermal-zone = 1
 warn-temperature = 60
 
 format = <ramp> <label>
@@ -429,7 +440,7 @@ format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.alert}
+label-warn-foreground = ${colors.cyan}
 
 ramp-0 = 
 ramp-1 = 
@@ -446,7 +457,7 @@ format-spacing = 1
 label-open =  
 label-open-foreground = ${colors.blue}
 label-close = ﰸ cancel
-label-close-foreground = ${colors.cyan}
+label-close-foreground = ${colors.alert}
 label-separator = |
 label-separator-foreground = ${colors.foreground}
 
@@ -458,10 +469,10 @@ menu-0-1-exec = menu-open-2
 menu-1-0 = cancel
 menu-1-0-exec = menu-open-0
 menu-1-1 =  reboot
-menu-1-1-exec = sudo reboot
+menu-1-1-exec = reboot
 
 menu-2-0 =  poweroff
-menu-2-0-exec = sudo poweroff
+menu-2-0-exec = poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 

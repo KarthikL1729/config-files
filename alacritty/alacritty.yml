@@ -114,8 +114,8 @@ font:
     #family: RobotoMono Nerd Font
     # family: Hack
     # family: JetBrains Mono
-    # family: MesloLGS NF
-    family: Fira Code
+      family: MesloLGS NF
+    # family: Fira Code
     # family: UbuntuMono Nerd Font
     # family: Monofur Nerd Font
     # family: TerminessTTF Nerd Font
@@ -135,8 +135,8 @@ font:
     # family: RobotoMono Nerd Font
     # family: Hack
     # family: JetBrains Mono
-    # family: MesloLGS NF
-    family: Fira Code
+    family: MesloLGS NF
+    # family: Fira Code
     # family: UbuntuMono Nerd Font
     # family: Monofur Nerd Font
     # family: TerminessTTF Nerd Font
@@ -152,10 +152,10 @@ font:
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: Source Code Pro
-    # family: MesloLGS NF
-    family: Fira Code
-    #family: CodeNewRoman Nerd Font
-    #family: RobotoMono Nerd Font
+    family: MesloLGS NF
+    # family: Fira Code
+    # family: CodeNewRoman Nerd Font
+    # family: RobotoMono Nerd Font
     # family: Hack
     # family: JetBrains Mono
     # family: UbuntuMono Nerd Font
@@ -181,7 +181,8 @@ font:
     # family: Monofuritalic Nerd Font Mono
     # family: TerminessTTF Nerd Font
     # family: Mononoki Nerd Font
-    family: Fira Code 
+    # family: Fira Code
+      family: MesloLGS NF 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
 
